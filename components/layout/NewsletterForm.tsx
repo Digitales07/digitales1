@@ -10,7 +10,7 @@ function getSourceDomain() {
   const testDomain = new URLSearchParams(window.location.search).get("domain");
   const hostname = window.location.hostname.toLowerCase();
   const isDemoHost = ["localhost", "127.0.0.1"].includes(hostname) || hostname.endsWith(".vercel.app");
-  const isRegionalDomain = testDomain && ["digitales.uk", "digitales.us"].includes(testDomain.toLowerCase());
+  const isRegionalDomain = testDomain && ["digitalesuk.com", "digitalesusa.org"].includes(testDomain.toLowerCase());
 
   if (isDemoHost && isRegionalDomain) {
     return testDomain.toLowerCase();

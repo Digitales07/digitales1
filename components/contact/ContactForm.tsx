@@ -23,7 +23,7 @@ function getSourceDomain() {
   const testDomain = new URLSearchParams(window.location.search).get("domain");
   const hostname = window.location.hostname.toLowerCase();
   const isDemoHost = ["localhost", "127.0.0.1"].includes(hostname) || hostname.endsWith(".vercel.app");
-  const isRegionalDomain = testDomain && ["digitales.uk", "digitales.us"].includes(testDomain.toLowerCase());
+  const isRegionalDomain = testDomain && ["digitalesuk.com", "digitalesusa.org"].includes(testDomain.toLowerCase());
 
   if (isDemoHost && isRegionalDomain) {
     return testDomain.toLowerCase();
@@ -34,14 +34,14 @@ function getSourceDomain() {
 
 function getLocationsForDomain(domain: string) {
   if (domain.includes("digitales.pk")) {
-    return ["Lahore Office", "London Office", "New York Office"];
+    return ["Global Headquarters — Lahore"];
   }
 
-  if (domain.includes("digitales.uk")) {
+  if (domain.includes("digitalesuk.com")) {
     return ["London Office"];
   }
 
-  if (domain.includes("digitales.us")) {
+  if (domain.includes("digitalesusa.org")) {
     return ["New York Office"];
   }
 

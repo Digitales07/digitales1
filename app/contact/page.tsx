@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/RegionalLink";
 import { headers } from "next/headers";
 import { EnvelopeSimple, Phone, MapPin, ArrowRight, MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
 import ContactForm from "@/components/contact/ContactForm";
@@ -88,10 +88,12 @@ const OFFICES = [
 ];
 
 function getDisplayHost(searchParams?: { domain?: string | string[] }) {
-  const host = headers().get("host")?.split(":")[0].toLowerCase() || "";
+  const requestHeaders = headers();
+  const forwardedHost = requestHeaders.get("x-forwarded-host")?.split(",")[0].trim();
+  const host = (forwardedHost || requestHeaders.get("host") || "").split(":")[0].toLowerCase();
   const domainParam = Array.isArray(searchParams?.domain) ? searchParams?.domain[0] : searchParams?.domain;
   const isDemoHost = ["localhost", "127.0.0.1"].includes(host) || host.endsWith(".vercel.app");
-  const isRegionalDomain = domainParam && ["digitales.uk", "digitales.us"].includes(domainParam.toLowerCase());
+  const isRegionalDomain = domainParam && ["digitalesuk.com", "digitalesusa.org"].includes(domainParam.toLowerCase());
 
   if (isDemoHost && isRegionalDomain) {
     return domainParam.toLowerCase();
@@ -101,11 +103,15 @@ function getDisplayHost(searchParams?: { domain?: string | string[] }) {
 }
 
 function getOfficesForHost(host: string) {
-  if (host.includes("digitales.uk")) {
+  if (host === "digitales.pk" || host === "www.digitales.pk") {
+    return OFFICES.filter((office) => office.name === "Pakistan HQ");
+  }
+
+  if (host.includes("digitalesuk.com")) {
     return OFFICES.filter((office) => office.name === "UK Chapter");
   }
 
-  if (host.includes("digitales.us")) {
+  if (host.includes("digitalesusa.org")) {
     return OFFICES.filter((office) => office.name === "USA Chapter");
   }
 
@@ -113,7 +119,15 @@ function getOfficesForHost(host: string) {
 }
 
 function getContactDetailsForHost(host: string) {
-  if (host.includes("digitales.uk")) {
+  if (host === "digitales.pk" || host === "www.digitales.pk") {
+    return {
+      email: "admin@digitales.pk",
+      supportHeading: "Global Headquarters",
+      supportHours: "Mon–Fri, Pakistan hours",
+    };
+  }
+
+  if (host.includes("digitalesuk.com")) {
     return {
       email: "info@digitalesuk.com",
       supportHeading: "Support",
@@ -121,7 +135,7 @@ function getContactDetailsForHost(host: string) {
     };
   }
 
-  if (host.includes("digitales.us")) {
+  if (host.includes("digitalesusa.org")) {
     return {
       email: "admin@digitalesusa.org",
       supportHeading: "Support",
@@ -152,7 +166,11 @@ export default function ContactPage({
   const displayHost = getDisplayHost(searchParams);
   const visibleOffices = getOfficesForHost(displayHost);
   const contactDetails = getContactDetailsForHost(displayHost);
-  const isRegionalOfficeView = displayHost.includes("digitales.uk") || displayHost.includes("digitales.us");
+  const isSingleOfficeView =
+    displayHost === "digitales.pk" ||
+    displayHost === "www.digitales.pk" ||
+    displayHost.includes("digitalesuk.com") ||
+    displayHost.includes("digitalesusa.org");
 
   return (
     <>
@@ -218,9 +236,9 @@ export default function ContactPage({
       {/* Our Global Offices with Mockup Interactive Maps */}
       <section className="bg-night relative">
         <div className="container-d section">
-          <h2 className="text-center h2">{isRegionalOfficeView ? "Our Office" : "Our Global Offices"}</h2>
+          <h2 className="text-center h2">{isSingleOfficeView ? "Our Office" : "Our Global Offices"}</h2>
           <p className="mx-auto mt-3 max-w-lg text-center lede">
-            {isRegionalOfficeView
+            {isSingleOfficeView
               ? "Strategically located to support brands in your region."
               : "Strategically located to support global brands around the clock."}
           </p>
