@@ -103,10 +103,6 @@ function getDisplayHost(searchParams?: { domain?: string | string[] }) {
 }
 
 function getOfficesForHost(host: string) {
-  if (host === "digitales.pk" || host === "www.digitales.pk") {
-    return OFFICES.filter((office) => office.name === "Pakistan HQ");
-  }
-
   if (host.includes("digitalesuk.com")) {
     return OFFICES.filter((office) => office.name === "UK Chapter");
   }
@@ -167,8 +163,6 @@ export default function ContactPage({
   const visibleOffices = getOfficesForHost(displayHost);
   const contactDetails = getContactDetailsForHost(displayHost);
   const isSingleOfficeView =
-    displayHost === "digitales.pk" ||
-    displayHost === "www.digitales.pk" ||
     displayHost.includes("digitalesuk.com") ||
     displayHost.includes("digitalesusa.org");
 
