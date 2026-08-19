@@ -51,63 +51,70 @@ async function sendAuditEmails(leadData: AuditLeadData, auditResult: AuditSucces
     const resend = new Resend(resendApiKey);
     const companyName = leadData.company || leadData.name || "your website";
 
-    const internalEmailResult = await resend.emails.send({
-      from: "info@digitales.pk",
-      to: "shaheerulazeem@gmail.com",
-      subject: "New Digital Health Score Lead",
-      react: InternalAuditLeadEmail({
-        name: leadData.name,
-        email: leadData.email,
-        company: leadData.company,
-        url: leadData.url,
-        strategy: leadData.strategy,
-        overall: auditResult.overall,
-        dimensions: auditResult.dimensions,
-        vitals: auditResult.vitals,
+    const [internalEmailSettled, clientEmailSettled] = await Promise.allSettled([
+      resend.emails.send({
+        from: "info@digitales.pk",
+        to: "shaheerulazeem@gmail.com",
+        subject: "New Digital Health Score Lead",
+        react: InternalAuditLeadEmail({
+          name: leadData.name,
+          email: leadData.email,
+          company: leadData.company,
+          url: leadData.url,
+          strategy: leadData.strategy,
+          overall: auditResult.overall,
+          dimensions: auditResult.dimensions,
+          vitals: auditResult.vitals,
+        }),
+        attachments: [
+          {
+            filename: "digitales-logo.png",
+            content: emailLogoBase64,
+            contentType: "image/png",
+            contentId: emailLogoCid,
+          },
+        ],
       }),
-      attachments: [
-        {
-          filename: "digitales-logo.png",
-          content: emailLogoBase64,
-          contentType: "image/png",
-          contentId: emailLogoCid,
-        },
-      ],
-    });
+      resend.emails.send({
+        from: "info@digitales.pk",
+        to: leadData.email,
+        subject: `Your Digital Health Score for ${companyName}`,
+        react: AuditResultsEmail({
+          name: leadData.name,
+          company: leadData.company,
+          url: leadData.url,
+          score: auditResult.overall,
+          strategy: auditResult.strategy,
+          dimensions: auditResult.dimensions,
+          vitals: auditResult.vitals,
+        }),
+        attachments: [
+          {
+            filename: "digitales-logo.png",
+            content: emailLogoBase64,
+            contentType: "image/png",
+            contentId: emailLogoCid,
+          },
+        ],
+      }),
+    ]);
 
-    if (internalEmailResult.error) {
-      console.error("AUDIT_INTERNAL_EMAIL_ERROR:", internalEmailResult.error);
+    if (internalEmailSettled.status === "rejected" || internalEmailSettled.value.error) {
+      console.error(
+        "AUDIT_INTERNAL_EMAIL_ERROR:",
+        internalEmailSettled.status === "rejected" ? internalEmailSettled.reason : internalEmailSettled.value.error
+      );
     } else {
-      console.log("AUDIT_INTERNAL_EMAIL_SENT:", internalEmailResult.data?.id);
+      console.log("AUDIT_INTERNAL_EMAIL_SENT:", internalEmailSettled.value.data?.id);
     }
 
-    const clientEmailResult = await resend.emails.send({
-      from: "info@digitales.pk",
-      to: leadData.email,
-      subject: `Your Digital Health Score for ${companyName}`,
-      react: AuditResultsEmail({
-        name: leadData.name,
-        company: leadData.company,
-        url: leadData.url,
-        score: auditResult.overall,
-        strategy: auditResult.strategy,
-        dimensions: auditResult.dimensions,
-        vitals: auditResult.vitals,
-      }),
-      attachments: [
-        {
-          filename: "digitales-logo.png",
-          content: emailLogoBase64,
-          contentType: "image/png",
-          contentId: emailLogoCid,
-        },
-      ],
-    });
-
-    if (clientEmailResult.error) {
-      console.error("AUDIT_CLIENT_EMAIL_ERROR:", clientEmailResult.error);
+    if (clientEmailSettled.status === "rejected" || clientEmailSettled.value.error) {
+      console.error(
+        "AUDIT_CLIENT_EMAIL_ERROR:",
+        clientEmailSettled.status === "rejected" ? clientEmailSettled.reason : clientEmailSettled.value.error
+      );
     } else {
-      console.log("AUDIT_CLIENT_EMAIL_SENT:", clientEmailResult.data?.id);
+      console.log("AUDIT_CLIENT_EMAIL_SENT:", clientEmailSettled.value.data?.id);
     }
   } catch (error) {
     console.error("AUDIT_EMAIL_ERROR:", error);
@@ -201,9 +208,10 @@ export async function POST(req: NextRequest) {
     const psiUrl = buildPsiUrl(normalized, strategy, apiKey);
     console.log("DEBUG: Reached step 5 - before triggering Google PageSpeed");
 
-    // Call PSI API with a 55-second timeout
+    // Call PSI API with a 58-second timeout, leaving ~2s of the 60s function
+    // budget for JSON parsing and the (now-parallelized) score update/email dispatch
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 55000);
+    const timeoutId = setTimeout(() => controller.abort(), 58000);
 
     try {
       const response = await fetch(psiUrl, {
@@ -233,35 +241,37 @@ export async function POST(req: NextRequest) {
         );
       }
 
-      if (leadId) {
-        const score = Number.isInteger(auditResult.overall)
-          ? auditResult.overall
-          : Math.round(Number(auditResult.overall));
+      const scoreUpdatePromise = leadId
+        ? (async () => {
+            const score = Number.isInteger(auditResult.overall)
+              ? auditResult.overall
+              : Math.round(Number(auditResult.overall));
 
-        try {
-          console.log("DEBUG: Reached step 6 - right before Firestore lead score update");
-          await updateDoc(doc(db, "audit_leads", leadId), {
-            score,
-            updatedAt: serverTimestamp(),
-          });
-          console.log("DEBUG: Reached step 7 - right after Firestore lead score update completed");
-        } catch (error) {
-          console.error("FIRESTORE_SCORE_UPDATE_ERROR:", {
-            firebaseConfigSource,
-            firebaseProjectId,
-            error,
-          });
-        }
-      }
+            try {
+              console.log("DEBUG: Reached step 6 - right before Firestore lead score update");
+              await updateDoc(doc(db, "audit_leads", leadId as string), {
+                score,
+                updatedAt: serverTimestamp(),
+              });
+              console.log("DEBUG: Reached step 7 - right after Firestore lead score update completed");
+            } catch (error) {
+              console.error("FIRESTORE_SCORE_UPDATE_ERROR:", {
+                firebaseConfigSource,
+                firebaseProjectId,
+                error,
+              });
+            }
+          })()
+        : Promise.resolve();
 
-      await sendAuditEmails(leadData, auditResult);
+      await Promise.allSettled([scoreUpdatePromise, sendAuditEmails(leadData, auditResult)]);
 
       return NextResponse.json(auditResult);
     } catch (fetchErr: any) {
       clearTimeout(timeoutId);
       if (fetchErr.name === "AbortError") {
         return NextResponse.json(
-          { ok: false, error: "The PageSpeed audit timed out (limit: 55 seconds). Please try again later." },
+          { ok: false, error: "The PageSpeed audit timed out (limit: 58 seconds). Please try again later." },
           { status: 504 } // Gateway Timeout
         );
       }
