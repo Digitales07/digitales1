@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/RegionalLink";
 import {
   ArrowRight, Database, FileText, ChartBar, Users, Megaphone, CurrencyDollar,
   Receipt, ChartPieSlice, PlugsConnected, Check,

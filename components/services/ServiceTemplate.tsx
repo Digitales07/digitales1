@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/RegionalLink";
 import { ArrowRight, CheckCircle, Sparkle } from "@phosphor-icons/react/dist/ssr";
 import CircuitBackground from "@/components/ui/CircuitBackground";
 

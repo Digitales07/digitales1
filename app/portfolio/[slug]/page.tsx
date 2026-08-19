@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import Link from "@/components/ui/RegionalLink";
 import { ArrowRight, CaretRight, Check } from "@phosphor-icons/react/dist/ssr";
 import CircuitBackground from "@/components/ui/CircuitBackground";
 import FinalCta from "@/components/home/FinalCta";

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/ui/RegionalLink";
 import { ArrowRight, TrendUp, Buildings, Globe, Check, X } from "@phosphor-icons/react/dist/ssr";
 import CircuitBackground from "@/components/ui/CircuitBackground";
 import DartxForm from "@/components/dartx/DartxForm";

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import Link from "@/components/ui/RegionalLink";
 import { ArrowRight } from "@phosphor-icons/react";
 import CircuitBackground from "@/components/ui/CircuitBackground";
 

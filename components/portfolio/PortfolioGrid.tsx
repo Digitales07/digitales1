@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/ui/RegionalLink";
 import { ArrowRight } from "@phosphor-icons/react";
 import { CASE_STUDIES, PORTFOLIO_FILTERS } from "@/lib/site";
 

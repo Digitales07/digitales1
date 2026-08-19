@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
+import Link from "@/components/ui/RegionalLink";
 import {
   ArrowRight, ArrowLeft, ShoppingCart, GraduationCap, FirstAid, HeartHalf,
   Briefcase, House, ForkKnife, DotsThreeOutline, CheckCircle, Check,

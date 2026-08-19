@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/RegionalLink";
 import Image from "next/image";
 import { FacebookLogo, InstagramLogo, LinkedinLogo } from "@phosphor-icons/react/dist/ssr";
 import { SITE } from "@/lib/site";

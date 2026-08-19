@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/RegionalLink";
 import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 import CircuitBackground from "@/components/ui/CircuitBackground";
 
