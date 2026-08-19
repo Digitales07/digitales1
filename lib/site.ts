@@ -116,7 +116,7 @@ export const TEAM_SNAPSHOT = [
   { name: "Aziz Khawaja", title: "Director - Operations", lead: true },
   { name: "Ammarah", title: "Creative Lead", lead: false },
   { name: "Waqas Nayyar", title: "SEO Specialist", lead: false },
-  { name: "Khuzema Khan", title: "Full Stack Developer", lead: false },
+  { name: "Khuzema Fayyaz", title: "Team Lead - Tech", lead: false },
   { name: "Ayesha", title: "Account Lead", lead: false },
 ] as const;
 
@@ -368,7 +368,18 @@ export const TEAM = [
   {
     dept: "Technology & Data",
     people: [
-      { name: "Khuzema Khan", title: "Full Stack Developer" },
+      {
+        name: "Khuzema Fayyaz",
+        title: "Team Lead - Tech",
+        image: "/about/khuzema-fayyaz.jpg",
+        bio: "Khuzema Fayyaz is a Senior Full-Stack Engineer whose journey began in August 2012. Over the past 14 years, he has grown alongside the web, starting with early CMS platforms like Joomla and WordPress, scaling through custom PHP and Laravel backend architectures, and mastering modern ecosystems including Vue, React, Angular, React Native, Firebase, and Graph APIs. He builds end-to-end, high-scalability applications across both web and mobile platforms.",
+      },
+      {
+        name: "Haris Amjad",
+        title: "PHP Laravel Developer",
+        image: "/about/haris-amjad.jpg",
+        bio: "Haris Amjad is a PHP Laravel Developer with 5+ years of experience in web application development, specializing in Laravel, MySQL, JavaScript, and business management systems.",
+      },
       {
         name: "Muhammad Talha Qureshi",
         title: "WordPress Developer & Graphic Designer",

@@ -216,7 +216,7 @@ export default function AboutPage() {
                         (group.dept === "Creative" && person.name === "Ammarah Zahid") ||
                         (group.dept === "Account Management" && person.name === "Ayesha Gull") ||
                         (group.dept === "Performance & Growth" && person.name === "Waqas Nayyar") ||
-                        (group.dept === "Technology & Data" && person.name === "Khuzema Khan")
+                        (group.dept === "Technology & Data" && person.name === "Khuzema Fayyaz")
                           ? "flex-[1_1_100%]"
                           : "flex-[1_1_300px]"
                       }`}
