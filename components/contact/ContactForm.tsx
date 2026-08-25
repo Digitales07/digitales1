@@ -37,6 +37,7 @@ export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [sourceDomain, setSourceDomain] = useState("");
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
 
   useEffect(() => {
     setSourceDomain(getSourceDomain());
@@ -79,6 +80,7 @@ export default function ContactForm() {
 
       setSent(true);
       form.reset();
+      setSelectedServices([]);
     } catch (err: any) {
       setError(err.message || "We could not send your message. Please try again.");
     } finally {
@@ -115,23 +117,48 @@ export default function ContactForm() {
 
       <fieldset className="mt-5">
         <legend className="font-body text-xs font-medium uppercase tracking-wider text-muted">Services of Interest</legend>
-        <p className="mt-1 font-body text-xs text-muted/80">Select all that apply.</p>
-        <div className="mt-3 grid gap-2 sm:grid-cols-2">
-          {SERVICES_OPTIONS.map((service) => (
-            <label
-              key={service}
-              className="flex cursor-pointer items-center gap-3 rounded-lg border border-white/12 bg-night px-4 py-3 font-body text-sm text-white transition hover:border-gold/40"
-            >
-              <input
-                type="checkbox"
-                name="services"
-                value={service}
-                className="h-4 w-4 accent-gold"
-              />
-              <span>{service}</span>
-            </label>
-          ))}
-        </div>
+        <details className="group relative mt-2">
+          <summary className="flex w-full cursor-pointer list-none items-center justify-between rounded-lg border border-white/12 bg-night px-4 py-3 font-body text-sm text-white transition hover:border-gold/40 focus:outline-none [&::-webkit-details-marker]:hidden">
+            <span className={selectedServices.length ? "text-white" : "text-muted/60"}>
+              {selectedServices.length === 0
+                ? "Select services"
+                : selectedServices.length === 1
+                  ? selectedServices[0]
+                  : `${selectedServices.length} services selected`}
+            </span>
+            <span aria-hidden className="ml-3 text-gold transition-transform duration-200 group-open:rotate-180">⌄</span>
+          </summary>
+
+          <div className="absolute left-0 right-0 z-30 mt-2 max-h-72 overflow-y-auto rounded-lg border border-white/12 bg-night-surface p-2 shadow-2xl">
+            {SERVICES_OPTIONS.map((service) => {
+              const checked = selectedServices.includes(service);
+
+              return (
+                <label
+                  key={service}
+                  className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2.5 font-body text-sm text-white transition hover:bg-white/[0.05]"
+                >
+                  <input
+                    type="checkbox"
+                    name="services"
+                    value={service}
+                    checked={checked}
+                    onChange={() =>
+                      setSelectedServices((current) =>
+                        current.includes(service)
+                          ? current.filter((item) => item !== service)
+                          : [...current, service]
+                      )
+                    }
+                    className="h-4 w-4 accent-gold"
+                  />
+                  <span>{service}</span>
+                </label>
+              );
+            })}
+          </div>
+        </details>
+        <p className="mt-1.5 font-body text-xs text-muted/80">You can select more than one service.</p>
       </fieldset>
 
       <div className="mt-5">

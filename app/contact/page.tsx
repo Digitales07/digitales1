@@ -115,8 +115,9 @@ function getContactDetailsForHost(host: string) {
   if (host === "digitales.pk" || host === "www.digitales.pk") {
     return {
       email: "admin@digitales.pk",
-      supportHeading: "Global Headquarters",
-      supportHours: "Mon–Fri, Pakistan hours",
+      supportHeading: "Call Us",
+      supportHours: "+92 334 8138456",
+      phoneHref: "+923348138456",
     };
   }
 
@@ -214,7 +215,16 @@ export default function ContactPage({
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-purple/15 text-gold"><Phone size={20} weight="fill" /></span>
                 <div>
                   <p className="font-display text-sm font-semibold text-white">{contactDetails.supportHeading}</p>
-                  <p className="font-body text-sm text-muted">{contactDetails.supportHours}</p>
+                  {"phoneHref" in contactDetails ? (
+                    <Link
+                      href={`tel:${contactDetails.phoneHref}`}
+                      className="font-body text-sm text-muted transition hover:text-gold hover:underline"
+                    >
+                      {contactDetails.supportHours}
+                    </Link>
+                  ) : (
+                    <p className="font-body text-sm text-muted">{contactDetails.supportHours}</p>
+                  )}
                 </div>
               </div>
             </div>
