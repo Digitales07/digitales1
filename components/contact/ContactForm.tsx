@@ -32,33 +32,14 @@ function getSourceDomain() {
   return hostname;
 }
 
-function getLocationsForDomain(domain: string) {
-  if (domain.includes("digitales.pk")) {
-    return ["Global Headquarters — Lahore"];
-  }
-
-  if (domain.includes("digitalesuk.com")) {
-    return ["London Office"];
-  }
-
-  if (domain.includes("digitalesusa.org")) {
-    return ["New York Office"];
-  }
-
-  return ["Global Headquarters"];
-}
-
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [sourceDomain, setSourceDomain] = useState("");
-  const [locations, setLocations] = useState(["Global Headquarters"]);
 
   useEffect(() => {
-    const domain = getSourceDomain();
-    setSourceDomain(domain);
-    setLocations(getLocationsForDomain(domain));
+    setSourceDomain(getSourceDomain());
   }, []);
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -73,7 +54,8 @@ export default function ContactForm() {
     const payload = {
       name: String(formData.get("name") || ""),
       email: String(formData.get("email") || ""),
-      service: String(formData.get("service") || ""),
+      phone: String(formData.get("phone") || ""),
+      services: formData.getAll("services").map((service) => String(service)),
       message: String(formData.get("message") || ""),
       sourceDomain: sourceDomain || getSourceDomain() || "unknown",
     };
@@ -122,35 +104,35 @@ export default function ContactForm() {
       {/* honeypot */}
       <input type="text" name="company_url" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
-      <div className="mb-6 rounded-lg border border-white/[0.08] bg-night/70 px-4 py-3">
-        <p className="font-body text-xs font-medium uppercase tracking-wider text-muted">Regional offices</p>
-        <ul className="mt-2 space-y-1">
-          {locations.map((location) => (
-            <li key={location} className="font-body text-sm text-white">
-              {location}
-            </li>
-          ))}
-        </ul>
-      </div>
-
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Full Name" name="name" placeholder="Your name" required />
-        <Field label="Work Email Address" name="email" type="email" placeholder="you@company.com" required />
+        <Field label="Email Address" name="email" type="email" placeholder="you@company.com" required />
       </div>
 
       <div className="mt-5">
-        <label className="font-body text-xs font-medium uppercase tracking-wider text-muted">Service of Interest</label>
-        <select
-          name="service"
-          className="mt-2 w-full rounded-lg border border-white/12 bg-night px-4 py-3 font-body text-sm text-white focus:border-gold/60 focus:outline-none"
-          defaultValue=""
-        >
-          <option value="" disabled>Select a service…</option>
-          {SERVICES_OPTIONS.map((s) => (
-            <option key={s} value={s} className="bg-night-surface">{s}</option>
-          ))}
-        </select>
+        <Field label="Phone Number" name="phone" type="tel" placeholder="Your phone number" />
       </div>
+
+      <fieldset className="mt-5">
+        <legend className="font-body text-xs font-medium uppercase tracking-wider text-muted">Services of Interest</legend>
+        <p className="mt-1 font-body text-xs text-muted/80">Select all that apply.</p>
+        <div className="mt-3 grid gap-2 sm:grid-cols-2">
+          {SERVICES_OPTIONS.map((service) => (
+            <label
+              key={service}
+              className="flex cursor-pointer items-center gap-3 rounded-lg border border-white/12 bg-night px-4 py-3 font-body text-sm text-white transition hover:border-gold/40"
+            >
+              <input
+                type="checkbox"
+                name="services"
+                value={service}
+                className="h-4 w-4 accent-gold"
+              />
+              <span>{service}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
 
       <div className="mt-5">
         <label className="font-body text-xs font-medium uppercase tracking-wider text-muted">Tell us about your project</label>

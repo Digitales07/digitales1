@@ -8,14 +8,16 @@ import ClientEmailShell, { clientStyles } from "@/emails/ClientEmailShell";
 export type ContactFormEmailProps = {
   name: string;
   email: string;
-  service?: string;
+  phone?: string;
+  services?: string[];
   message: string;
 };
 
 export default function ContactFormEmail({
   name = "Digitales visitor",
   email = "hello@example.com",
-  service = "Not specified",
+  phone = "Not provided",
+  services = ["Not specified"],
   message = "I would like to learn more about Digitales services.",
 }: ContactFormEmailProps) {
   return (
@@ -34,7 +36,8 @@ export default function ContactFormEmail({
       <Section style={{ ...clientStyles.block, marginTop: "24px" }}>
         <Detail label="Name" value={name} />
         <Detail label="Email" value={email} href={`mailto:${email}`} />
-        <Detail label="Selected Service" value={service} />
+        <Detail label="Phone Number" value={phone} />
+        <Detail label="Services of Interest" value={services.join(", ")} />
         <Section style={clientStyles.rowLast}>
           <Text style={clientStyles.label}>Message</Text>
           <Text

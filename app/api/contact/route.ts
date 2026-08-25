@@ -12,6 +12,8 @@ export const dynamic = "force-dynamic";
 type ContactPayload = {
   name?: unknown;
   email?: unknown;
+  phone?: unknown;
+  services?: unknown;
   service?: unknown;
   message?: unknown;
   sourceDomain?: unknown;
@@ -20,19 +22,31 @@ type ContactPayload = {
 type ContactData = {
   name: string;
   email: string;
-  service: string;
+  phone: string;
+  services: string[];
   message: string;
   sourceDomain: string;
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function validateContactPayload(body: ContactPayload) {
+function validateContactPayload(body: ContactPayload): { error: string } | { data: ContactData } {
   const name = typeof body.name === "string" ? body.name.trim() : "";
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
-  const service = typeof body.service === "string" ? body.service.trim() : "";
+  const phone = typeof body.phone === "string" ? body.phone.trim() : "";
   const message = typeof body.message === "string" ? body.message.trim() : "";
   const sourceDomain = typeof body.sourceDomain === "string" ? body.sourceDomain.trim().toLowerCase() : "";
+
+  const services = Array.isArray(body.services)
+    ? body.services
+        .filter((service): service is string => typeof service === "string")
+        .map((service) => service.trim())
+        .filter(Boolean)
+    : typeof body.services === "string" && body.services.trim()
+      ? [body.services.trim()]
+      : typeof body.service === "string" && body.service.trim()
+        ? [body.service.trim()]
+        : [];
 
   if (!name) {
     return { error: "Name is required" };
@@ -54,7 +68,8 @@ function validateContactPayload(body: ContactPayload) {
     data: {
       name,
       email,
-      service: service || "Not specified",
+      phone: phone || "Not provided",
+      services: services.length ? services : ["Not specified"],
       message,
       sourceDomain: sourceDomain || "unknown",
     },
@@ -77,7 +92,8 @@ export async function POST(req: NextRequest) {
       await addDoc(collection(db, "contacts"), {
         name: validated.data.name,
         email: validated.data.email,
-        service: validated.data.service,
+        phone: validated.data.phone,
+        services: validated.data.services,
         message: validated.data.message,
         sourceDomain: validated.data.sourceDomain,
         createdAt: serverTimestamp(),

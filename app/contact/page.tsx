@@ -16,7 +16,6 @@ const OFFICES = [
     flag: "🇵🇰",
     name: "Pakistan HQ",
     address: "82-B Garden Block, Garden Town, Lahore, Pakistan, 54000",
-    phone: "+92 (42) 111 222 333",
     email: "admin@digitales.pk",
     searchLabel: "Garden Town, LHR",
     mapPaths: (
@@ -40,7 +39,6 @@ const OFFICES = [
     flag: "🇬🇧",
     name: "UK Chapter",
     address: "71-75 Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom",
-    phone: "+44 (20) 7946 0192",
     email: "info@digitalesuk.com",
     searchLabel: "Covent Garden, LDN",
     mapPaths: (
@@ -62,7 +60,6 @@ const OFFICES = [
     flag: "🇺🇸",
     name: "USA Chapter",
     address: "135 Madison Ave, New York, NY 10016, United States",
-    phone: "+1 (212) 555 0148",
     email: "admin@digitalesusa.org",
     searchLabel: "Madison Ave, NYC",
     mapPaths: (
@@ -250,10 +247,6 @@ export default function ContactPage({
                   <p className="flex items-start gap-2.5 leading-relaxed">
                     <MapPin size={18} className="text-gold mt-0.5 shrink-0" />
                     <span>{office.address}</span>
-                  </p>
-                  <p className="flex items-center gap-2.5 font-mono">
-                    <Phone size={16} className="text-gold shrink-0" />
-                    <span>{office.phone}</span>
                   </p>
                   <p className="flex items-center gap-2.5 font-mono">
                     <EnvelopeSimple size={16} className="text-gold shrink-0" />

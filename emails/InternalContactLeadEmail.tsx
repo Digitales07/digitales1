@@ -4,7 +4,8 @@ import InternalEmailShell, { shellStyles } from "@/emails/InternalEmailShell";
 export type InternalContactLeadEmailProps = {
   name: string;
   email: string;
-  service: string;
+  phone: string;
+  services: string[];
   message: string;
   sourceDomain?: string;
 };
@@ -12,7 +13,8 @@ export type InternalContactLeadEmailProps = {
 export default function InternalContactLeadEmail({
   name,
   email,
-  service,
+  phone,
+  services,
   message,
   sourceDomain = "unknown",
 }: InternalContactLeadEmailProps) {
@@ -26,8 +28,9 @@ export default function InternalContactLeadEmail({
       <Section style={shellStyles.block}>
         <Detail label="Name" value={name} />
         <Detail label="Email" value={email} href={`mailto:${email}`} />
+        <Detail label="Phone Number" value={phone} />
         <Detail label="Source Domain" value={sourceDomain} />
-        <Detail label="Selected Service" value={service} last />
+        <Detail label="Services of Interest" value={services.join(", ")} last />
       </Section>
 
       <Section style={{ ...shellStyles.block, marginTop: "18px" }}>
