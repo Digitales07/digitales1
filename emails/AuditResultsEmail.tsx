@@ -26,7 +26,7 @@ export type AuditResultsEmailProps = {
   consultationUrl?: string;
 };
 
-const siteUrl = "https://digitales.pk";
+const siteUrl = "https://www.digitales.pk";
 
 export default function AuditResultsEmail({
   name = "there",

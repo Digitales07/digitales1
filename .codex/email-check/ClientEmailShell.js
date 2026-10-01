@@ -5,7 +5,7 @@ exports.default = ClientEmailShell;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const components_1 = require("@react-email/components");
 const emailBrand_1 = require("./emailBrand");
-const siteUrl = "https://digitales.pk";
+const siteUrl = "https://www.digitales.pk";
 exports.clientColors = {
     gold: "#F0B428",
     night: "#0A0610",

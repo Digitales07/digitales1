@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Placeholder from "@/components/ui/Placeholder";
 
-export const metadata: Metadata = { title: "Terms of Service" };
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  alternates: { canonical: "/terms" },
+};
 
 export default function TermsPage() {
   return (

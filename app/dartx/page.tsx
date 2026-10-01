@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "DartX - White-Label Agency Partnership",
   description:
     "DartX is a white-label digital agency model. You bring the clients, we deliver the work under your brand - no overhead, no hiring, just results.",
+  alternates: { canonical: "/dartx" },
 };
 
 const OPPORTUNITY = [

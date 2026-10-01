@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Portfolio",
   description:
     "Real work, measurable results, no vanity metrics. Case studies across media buying, SEO, social, development, NGO, education, and e-commerce.",
+  alternates: { canonical: "/portfolio" },
 };
 
 export default function PortfolioPage() {

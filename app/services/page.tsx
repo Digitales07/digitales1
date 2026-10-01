@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Services",
   description:
     "Integrated marketing and technology: social media, media buying, digital PR, SEO, web & app development, and enterprise software across PK, UK, and USA.",
+  alternates: { canonical: "/services" },
 };
 
 const ICONS = { ShareNetwork, Target, Megaphone, MagnifyingGlass, Code, Stack } as const;

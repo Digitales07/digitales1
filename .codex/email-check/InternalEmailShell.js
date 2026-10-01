@@ -5,7 +5,7 @@ exports.default = InternalEmailShell;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const components_1 = require("@react-email/components");
 const emailBrand_1 = require("./emailBrand");
-const siteUrl = "https://digitales.pk";
+const siteUrl = "https://www.digitales.pk";
 const colors = {
     gold: "#F0B428",
     night: "#0A0610",

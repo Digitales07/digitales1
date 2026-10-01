@@ -1,0 +1,10 @@
+old_url,new_url,status
+/about-us/,https://www.digitales.pk/about,308
+/portfolio-sample/,https://www.digitales.pk/portfolio,308
+/team-category/*,https://www.digitales.pk/about,308
+/service/digital-pr-influencer-marketing/,https://www.digitales.pk/services/digital-pr-influencer,308
+/service/social-media-marketing/,https://www.digitales.pk/services/social-media-marketing,308
+/service/digital-media-buying/,https://www.digitales.pk/services/digital-media-buying,308
+/service/seo/,https://www.digitales.pk/services/seo,308
+/service/web-app-development/,https://www.digitales.pk/services/web-app-development,308
+/service/enterprise-software/,https://www.digitales.pk/services/enterprise-software,308

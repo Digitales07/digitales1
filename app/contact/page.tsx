@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Talk to the Digitales team across Pakistan, the UK, and the USA. We respond within one business day.",
+  alternates: { canonical: "/contact" },
 };
 
 const OFFICES = [

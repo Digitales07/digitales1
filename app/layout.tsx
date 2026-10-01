@@ -27,7 +27,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://digitales.pk"),
+  metadataBase: new URL("https://www.digitales.pk"),
   title: {
     default: "Digitales - Digital Marketing Agency & Performance Marketing Agency",
     template: "%s · Digitales",
@@ -43,9 +43,8 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image" },
   alternates: {
-    canonical: "/",
     languages: {
-      "en-PK": "https://digitales.pk",
+      "en-PK": "https://www.digitales.pk",
       "en-GB": "https://digitalesuk.com",
       "en-US": "https://digitalesusa.org",
     },

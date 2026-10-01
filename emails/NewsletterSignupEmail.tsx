@@ -16,7 +16,7 @@ export default function NewsletterSignupEmail({
       intro="Thanks for subscribing to Digitales insights. We will send you useful updates on digital strategy, performance marketing, product thinking, and technology execution."
       cta={{
         label: "Visit Digitales",
-        href: "https://digitales.pk",
+        href: "https://www.digitales.pk",
       }}
     >
       <Section style={clientStyles.block}>

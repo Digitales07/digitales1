@@ -29,7 +29,10 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const study = CASE_STUDIES.find((c) => c.slug === params.slug);
-  return { title: study ? `${study.client} - Case Study` : "Case Study" };
+  return {
+    title: study ? `${study.client} - Case Study` : "Case Study",
+    alternates: { canonical: `/portfolio/${params.slug}` },
+  };
 }
 
 export default function CaseStudyPage({ params }: { params: { slug: string } }) {

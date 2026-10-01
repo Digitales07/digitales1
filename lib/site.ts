@@ -158,7 +158,7 @@ export const FOOTER_WORK = [
 export const SITE = {
   name: "Digitales",
   tagline: "Smart Technology. High-Impact Marketing. Built to Perform.",
-  domain: "https://digitales.pk",
+  domain: "https://www.digitales.pk",
 };
 
 // ---- Full case studies (real clients). Numeric results only where the

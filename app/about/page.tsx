@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "Three decades of advertising heritage through Future Vision Advertising, brought into the digital era. Meet the Digitales leadership and team across PK, UK, and USA.",
+  alternates: { canonical: "/about" },
 };
 
 const TIMELINE_ICONS = [Sparkle, ChartLineUp, Globe, Sparkle, Globe, ChartLineUp];

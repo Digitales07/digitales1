@@ -20,7 +20,7 @@ type InternalEmailShellProps = {
   children: ReactNode;
 };
 
-const siteUrl = "https://digitales.pk";
+const siteUrl = "https://www.digitales.pk";
 
 const colors = {
   gold: "#F0B428",

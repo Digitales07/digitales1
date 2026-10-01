@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Free Digital Audit",
   description:
     "Get your free Digital Health Score in under three minutes - SEO, page speed, social, and content readiness, with personalised recommendations.",
+  alternates: { canonical: "/free-audit" },
 };
 
 export default function FreeAuditPage() {

@@ -25,7 +25,7 @@ type ClientEmailShellProps = {
   };
 };
 
-const siteUrl = "https://digitales.pk";
+const siteUrl = "https://www.digitales.pk";
 const instagramUrl = "https://www.instagram.com/digitalespk?igsh=bWt5MXhjMnpqZWx2";
 const linkedInUrl = "https://www.linkedin.com/company/digitalespk/";
 

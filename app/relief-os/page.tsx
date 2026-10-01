@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "Relief OS - Donation Management for NGOs",
   description:
     "Relief OS is the enterprise-grade donation management platform built exclusively for NGOs - donor lifecycle, campaigns, multi-currency, receipting, and impact reporting.",
+  alternates: { canonical: "/relief-os" },
 };
 
 const softwareSchema = {

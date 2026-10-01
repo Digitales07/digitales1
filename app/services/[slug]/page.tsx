@@ -16,6 +16,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: service?.name ?? "Service",
     description: detail?.answer.slice(0, 155),
+    alternates: { canonical: `/services/${params.slug}` },
   };
 }
 

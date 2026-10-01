@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Hero from "@/components/home/Hero";
 import TrustBar from "@/components/home/TrustBar";
 import ServicesGrid from "@/components/home/ServicesGrid";
@@ -7,12 +8,16 @@ import WhyDigitales from "@/components/home/WhyDigitales";
 import ProductsTeaser from "@/components/home/ProductsTeaser";
 import FinalCta from "@/components/home/FinalCta";
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Digitales",
-  url: "https://digitales.pk",
-  logo: "https://digitales.pk/logo.png",
+  url: "https://www.digitales.pk",
+  logo: "https://www.digitales.pk/digitales-logo.png",
   description: "Full-service digital agency and software product company across Pakistan, the UK, and the USA.",
   sameAs: ["https://www.linkedin.com/company/digitales", "https://www.instagram.com/digitales"],
 };

@@ -349,6 +349,7 @@ export function createServiceMetadata(slug: ServiceSlug): Metadata {
   return {
     title: content.title,
     description: content.answerParagraphs[0],
+    alternates: { canonical: `/services/${slug}` },
   };
 }
 
