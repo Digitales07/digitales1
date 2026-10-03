@@ -3,9 +3,9 @@ import PortfolioGrid from "@/components/portfolio/PortfolioGrid";
 import FinalCta from "@/components/home/FinalCta";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: { absolute: "Digital Marketing Case Studies & Results | Digitales" },
   description:
-    "Real work, measurable results, no vanity metrics. Case studies across media buying, SEO, social, development, NGO, education, and e-commerce.",
+    "Real results from Digitales: media buying, SEO, social media and development case studies for NGOs, universities and e-commerce brands.",
   alternates: { canonical: "/portfolio" },
 };
 

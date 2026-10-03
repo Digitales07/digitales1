@@ -8,9 +8,9 @@ import CircuitBackground from "@/components/ui/CircuitBackground";
 import Accordion from "@/components/ui/Accordion";
 
 export const metadata: Metadata = {
-  title: "Relief OS - Donation Management for NGOs",
+  title: { absolute: "Relief OS | Donation Management Software for NGOS" },
   description:
-    "Relief OS is the enterprise-grade donation management platform built exclusively for NGOs - donor lifecycle, campaigns, multi-currency, receipting, and impact reporting.",
+    "Relief OS is donation management software built for NGOS: track donors, run campaigns, manage appeals and report impact from one platform.",
   alternates: { canonical: "/relief-os" },
 };
 

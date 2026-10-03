@@ -9,6 +9,9 @@ import ProductsTeaser from "@/components/home/ProductsTeaser";
 import FinalCta from "@/components/home/FinalCta";
 
 export const metadata: Metadata = {
+  title: { absolute: "Global Digital Marketing Agency | Digitales" },
+  description:
+    "Digitales is a full-service digital marketing agency offering SEO, media buying, social media, and web & app development. Get your free audit today.",
   alternates: { canonical: "/" },
 };
 

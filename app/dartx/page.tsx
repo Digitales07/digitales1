@@ -6,9 +6,9 @@ import CircuitBackground from "@/components/ui/CircuitBackground";
 import DartxForm from "@/components/dartx/DartxForm";
 
 export const metadata: Metadata = {
-  title: "DartX - White-Label Agency Partnership",
+  title: { absolute: "DartX | White Label Digital Marketing for Agencies" },
   description:
-    "DartX is a white-label digital agency model. You bring the clients, we deliver the work under your brand - no overhead, no hiring, just results.",
+    "DartX is a white label digital marketing service: you keep the clients and brand, we deliver SEO, ads, social and web work. No hiring needed.",
   alternates: { canonical: "/dartx" },
 };
 

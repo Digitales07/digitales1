@@ -16,9 +16,9 @@ type LeadershipMember = {
 };
 
 export const metadata: Metadata = {
-  title: "About",
+  title: { absolute: "About Digitales | Digital Agency Backed by Future Vision" },
   description:
-    "Three decades of advertising heritage through Future Vision Advertising, brought into the digital era. Meet the Digitales leadership and team across PK, UK, and USA.",
+    "Meet Digitales: a digital marketing and technology agency built on 30 years of Future Vision Advertising heritage, with teams in Pakistan, UK and USA.",
   alternates: { canonical: "/about" },
 };
 

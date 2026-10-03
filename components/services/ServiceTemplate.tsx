@@ -343,12 +343,45 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
   },
 };
 
+const serviceSeoMetadata: Record<ServiceSlug, { title: string; description: string }> = {
+  seo: {
+    title: "Expert SEO Services & Organic Growth Agency | Digitales",
+    description:
+      "Drive sustainable, compounding organic visibility with technical SEO, authority building, and audience-first content. Partner with Digitales today.",
+  },
+  "social-media-marketing": {
+    title: "Social Media Marketing Services & Agency | Digitales",
+    description:
+      "Turn social traffic into revenue with strategic social media marketing. Expert campaign management and audience building by Digitales.",
+  },
+  "digital-media-buying": {
+    title: "Media Buying Services: Google & Meta Ads | Digitales",
+    description:
+      "Maximize return on ad spend with continuously optimized paid campaigns. Expert multi-channel media buying across PK, UK, and USA by Digitales.",
+  },
+  "digital-pr-influencer": {
+    title: "Digital PR & Influencer Marketing for Brands | Digitales",
+    description:
+      "Build brand awareness with influencer marketing strategies, creator partnerships, digital PR, and targeted campaigns that connect with your audience.",
+  },
+  "web-app-development": {
+    title: "Custom Web & Mobile App Development | Digitales",
+    description:
+      "Turn traffic into revenue with high-performance web and app development. Scalable, user-centric digital products built by Digitales.",
+  },
+  "enterprise-software": {
+    title: "Custom ERP, CRM & Enterprise Software | Digitales",
+    description:
+      "Bespoke CMS, DMS, ERP, and CRM systems built around your business processes. Scale operations securely with enterprise software by Digitales.",
+  },
+};
+
 export function createServiceMetadata(slug: ServiceSlug): Metadata {
-  const content = serviceContent[slug];
+  const seo = serviceSeoMetadata[slug];
 
   return {
-    title: content.title,
-    description: content.answerParagraphs[0],
+    title: { absolute: seo.title },
+    description: seo.description,
     alternates: { canonical: `/services/${slug}` },
   };
 }

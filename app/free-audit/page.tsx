@@ -4,9 +4,9 @@ import CircuitBackground from "@/components/ui/CircuitBackground";
 import AuditFunnel from "@/components/audit/AuditFunnel";
 
 export const metadata: Metadata = {
-  title: "Free Digital Audit",
+  title: { absolute: "Free Website & SEO Audit Tool | Digitales" },
   description:
-    "Get your free Digital Health Score in under three minutes - SEO, page speed, social, and content readiness, with personalised recommendations.",
+    "Get a free Digital Health Score in under 3 minutes: SEO, page speed, social and content readiness, with personalised recommendations.",
   alternates: { canonical: "/free-audit" },
 };
 

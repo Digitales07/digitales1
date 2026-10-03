@@ -6,9 +6,9 @@ import ContactForm from "@/components/contact/ContactForm";
 import Accordion from "@/components/ui/Accordion";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: { absolute: "Contact Us | Start Your Project | Digitales" },
   description:
-    "Talk to the Digitales team across Pakistan, the UK, and the USA. We respond within one business day.",
+    "Ready to build something that performs? Get in touch with our expert team across Pakistan, the UK, and the USA to start your project today.",
   alternates: { canonical: "/contact" },
 };
 
