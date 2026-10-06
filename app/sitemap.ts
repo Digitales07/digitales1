@@ -74,7 +74,7 @@ function getStaticRoutes(): string[] {
   }
 
   walk(appRoot);
-  return [...routes];
+  return Array.from(routes);
 }
 
 function settingsFor(route: string): RouteSettings {
