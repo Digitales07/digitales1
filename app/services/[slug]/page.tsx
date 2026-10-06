@@ -13,10 +13,20 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const service = SERVICES.find((s) => s.slug === params.slug);
   const detail = SERVICE_DETAIL[params.slug];
+  const title = service ? `${service.name} | Digitales` : "Service | Digitales";
+  const description = detail?.answer.slice(0, 155) ?? "Explore Digitales marketing and technology services.";
+  const canonical = `/services/${params.slug}`;
+
   return {
-    title: service?.name ?? "Service",
-    description: detail?.answer.slice(0, 155),
-    alternates: { canonical: `/services/${params.slug}` },
+    title: { absolute: title },
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      type: "website",
+    },
   };
 }
 

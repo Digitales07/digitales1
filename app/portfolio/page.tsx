@@ -7,6 +7,13 @@ export const metadata: Metadata = {
   description:
     "Real results from Digitales: media buying, SEO, social media and development case studies for NGOs, universities and e-commerce brands.",
   alternates: { canonical: "/portfolio" },
+  openGraph: {
+    title: "Digital Marketing Case Studies & Results | Digitales",
+    description:
+      "Real results from Digitales: media buying, SEO, social media and development case studies for NGOs, universities and e-commerce brands.",
+    url: "/portfolio",
+    type: "website",
+  },
 };
 
 export default function PortfolioPage() {

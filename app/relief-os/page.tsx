@@ -12,6 +12,13 @@ export const metadata: Metadata = {
   description:
     "Relief OS is donation management software built for NGOS: track donors, run campaigns, manage appeals and report impact from one platform.",
   alternates: { canonical: "/relief-os" },
+  openGraph: {
+    title: "Relief OS | Donation Management Software for NGOS",
+    description:
+      "Relief OS is donation management software built for NGOS: track donors, run campaigns, manage appeals and report impact from one platform.",
+    url: "/relief-os",
+    type: "website",
+  },
 };
 
 const softwareSchema = {

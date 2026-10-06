@@ -383,6 +383,12 @@ export function createServiceMetadata(slug: ServiceSlug): Metadata {
     title: { absolute: seo.title },
     description: seo.description,
     alternates: { canonical: `/services/${slug}` },
+    openGraph: {
+      title: seo.title,
+      description: seo.description,
+      url: `/services/${slug}`,
+      type: "website",
+    },
   };
 }
 

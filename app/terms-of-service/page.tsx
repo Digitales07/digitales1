@@ -2,7 +2,16 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
+  description:
+    "Read the Digitales terms of service covering website use, free audit submissions, intellectual property, third-party links, and related conditions.",
   alternates: { canonical: "/terms-of-service" },
+  openGraph: {
+    title: "Terms of Service | Digitales",
+    description:
+      "Read the Digitales terms of service covering website use, free audit submissions, intellectual property, third-party links, and related conditions.",
+    url: "/terms-of-service",
+    type: "website",
+  },
 };
 
 export default function TermsOfServicePage() {

@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  trailingSlash: false,
+
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
@@ -8,6 +10,9 @@ const nextConfig = {
 
   async redirects() {
     return [
+      // Keep only one public URL for the legal terms page.
+      { source: "/terms", destination: "https://www.digitales.pk/terms-of-service", permanent: true },
+
       // Old WordPress URLs: send them straight to the closest live page.
       // Destinations are absolute so old non-www URLs do not create a redirect chain.
       { source: "/about-us", destination: "https://www.digitales.pk/about", permanent: true },

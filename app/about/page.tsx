@@ -20,6 +20,13 @@ export const metadata: Metadata = {
   description:
     "Meet Digitales: a digital marketing and technology agency built on 30 years of Future Vision Advertising heritage, with teams in Pakistan, UK and USA.",
   alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Digitales | Digital Agency Backed by Future Vision",
+    description:
+      "Meet Digitales: a digital marketing and technology agency built on 30 years of Future Vision Advertising heritage, with teams in Pakistan, UK and USA.",
+    url: "/about",
+    type: "website",
+  },
 };
 
 const TIMELINE_ICONS = [Sparkle, ChartLineUp, Globe, Sparkle, Globe, ChartLineUp];

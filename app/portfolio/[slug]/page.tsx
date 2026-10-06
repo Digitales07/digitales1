@@ -29,9 +29,22 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const study = CASE_STUDIES.find((c) => c.slug === params.slug);
+  const title = study ? `${study.client} - ${study.title} | Digitales` : "Case Study | Digitales";
+  const description = study
+    ? `${study.title} case study for ${study.client}: ${study.resultLabel}. Explore the strategy and results delivered by Digitales.`
+    : "Explore a Digitales client case study and the strategy, execution, and results behind the work.";
+  const canonical = `/portfolio/${params.slug}`;
+
   return {
-    title: study ? `${study.client} - Case Study` : "Case Study",
-    alternates: { canonical: `/portfolio/${params.slug}` },
+    title: { absolute: title },
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      type: "article",
+    },
   };
 }
 

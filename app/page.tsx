@@ -13,6 +13,13 @@ export const metadata: Metadata = {
   description:
     "Digitales is a full-service digital marketing agency offering SEO, media buying, social media, and web & app development. Get your free audit today.",
   alternates: { canonical: "/" },
+  openGraph: {
+    title: "Global Digital Marketing Agency | Digitales",
+    description:
+      "Digitales is a full-service digital marketing agency offering SEO, media buying, social media, and web & app development. Get your free audit today.",
+    url: "/",
+    type: "website",
+  },
 };
 
 const orgSchema = {

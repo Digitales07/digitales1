@@ -11,6 +11,13 @@ export const metadata: Metadata = {
   description:
     "Integrated marketing and technology: social media, media buying, digital PR, SEO, web & app development, and enterprise software across PK, UK, and USA.",
   alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Digital Marketing & Technology Services | Digitales",
+    description:
+      "Integrated marketing and technology: social media, media buying, digital PR, SEO, web & app development, and enterprise software across PK, UK, and USA.",
+    url: "/services",
+    type: "website",
+  },
 };
 
 const ICONS = { ShareNetwork, Target, Megaphone, MagnifyingGlass, Code, Stack } as const;

@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   description:
     "Get a free Digital Health Score in under 3 minutes: SEO, page speed, social and content readiness, with personalised recommendations.",
   alternates: { canonical: "/free-audit" },
+  openGraph: {
+    title: "Free Website & SEO Audit Tool | Digitales",
+    description:
+      "Get a free Digital Health Score in under 3 minutes: SEO, page speed, social and content readiness, with personalised recommendations.",
+    url: "/free-audit",
+    type: "website",
+  },
 };
 
 export default function FreeAuditPage() {

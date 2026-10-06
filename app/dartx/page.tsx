@@ -10,6 +10,13 @@ export const metadata: Metadata = {
   description:
     "DartX is a white label digital marketing service: you keep the clients and brand, we deliver SEO, ads, social and web work. No hiring needed.",
   alternates: { canonical: "/dartx" },
+  openGraph: {
+    title: "DartX | White Label Digital Marketing for Agencies",
+    description:
+      "DartX is a white label digital marketing service: you keep the clients and brand, we deliver SEO, ads, social and web work. No hiring needed.",
+    url: "/dartx",
+    type: "website",
+  },
 };
 
 const OPPORTUNITY = [

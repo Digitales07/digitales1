@@ -2,7 +2,16 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
+  description:
+    "Read the Digitales privacy policy to understand how we collect, use, protect, and handle information submitted through our website and services.",
   alternates: { canonical: "/privacy-policy" },
+  openGraph: {
+    title: "Privacy Policy | Digitales",
+    description:
+      "Read the Digitales privacy policy to understand how we collect, use, protect, and handle information submitted through our website and services.",
+    url: "/privacy-policy",
+    type: "website",
+  },
 };
 
 export default function PrivacyPage() {

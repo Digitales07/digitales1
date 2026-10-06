@@ -34,13 +34,6 @@ export const metadata: Metadata = {
   },
   description:
     "Full-service digital marketing agency and performance marketing agency delivering data-driven digital marketing services, SEO, media buying, and custom software solutions across PK, UK, and USA.",
-  openGraph: {
-    type: "website",
-    siteName: "Digitales",
-    title: "Digitales - Digital Marketing Agency & Performance Marketing Agency",
-    description:
-      "Full-service digital marketing agency and performance marketing agency delivering data-driven digital marketing services, SEO, media buying, and custom software solutions across PK, UK, and USA.",
-  },
   twitter: { card: "summary_large_image" },
   alternates: {
     languages: {

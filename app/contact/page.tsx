@@ -10,6 +10,13 @@ export const metadata: Metadata = {
   description:
     "Ready to build something that performs? Get in touch with our expert team across Pakistan, the UK, and the USA to start your project today.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Us | Start Your Project | Digitales",
+    description:
+      "Ready to build something that performs? Get in touch with our expert team across Pakistan, the UK, and the USA to start your project today.",
+    url: "/contact",
+    type: "website",
+  },
 };
 
 const OFFICES = [
