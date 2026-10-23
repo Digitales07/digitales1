@@ -26,14 +26,17 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+// Shared defaults only. Every page sets its own alternates.canonical and openGraph
+// (title, description, url) - never add a canonical here or every page inherits it.
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.digitales.pk"),
   title: {
-    default: "Digitales - Digital Marketing Agency & Performance Marketing Agency",
-    template: "%s · Digitales",
+    default: "Digital Marketing Agency in Pakistan, UK & USA | Digitales",
+    template: "%s | Digitales",
   },
   description:
     "Full-service digital marketing agency and performance marketing agency delivering data-driven digital marketing services, SEO, media buying, and custom software solutions across PK, UK, and USA.",
+  openGraph: { siteName: "Digitales", type: "website", locale: "en_GB" },
   twitter: { card: "summary_large_image" },
   alternates: {
     languages: {

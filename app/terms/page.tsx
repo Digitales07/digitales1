@@ -3,7 +3,7 @@ import Placeholder from "@/components/ui/Placeholder";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  alternates: { canonical: "/terms" },
+  alternates: { canonical: "/terms-of-service" },
 };
 
 export default function TermsPage() {

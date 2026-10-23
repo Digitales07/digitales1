@@ -7,7 +7,7 @@ import FinalCta from "@/components/home/FinalCta";
 import { SERVICES, PROCESS_STEPS } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: { absolute: "Digital Marketing & Technology Services | Digitales" },
   description:
     "Integrated marketing and technology: social media, media buying, digital PR, SEO, web & app development, and enterprise software across PK, UK, and USA.",
   alternates: { canonical: "/services" },

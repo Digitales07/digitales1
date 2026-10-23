@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { EnvelopeSimple, Phone, MapPin, ArrowRight, MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
 import ContactForm from "@/components/contact/ContactForm";
 import Accordion from "@/components/ui/Accordion";
+import { OFFICES as CONTACT_OFFICES, toTelHref, type OfficeName } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: { absolute: "Contact Us | Start Your Project | Digitales" },
@@ -19,14 +20,9 @@ export const metadata: Metadata = {
   },
 };
 
-const OFFICES = [
-  {
-    flag: "🇵🇰",
-    name: "Pakistan HQ",
-    address: "82-B Garden Block, Garden Town, Lahore, Pakistan, 54000",
-    email: "admin@digitales.pk",
-    searchLabel: "Garden Town, LHR",
-    mapPaths: (
+// Contact details come from lib/contact.ts; only the decorative map art lives here.
+const MAP_PATHS: Record<OfficeName, React.ReactNode> = {
+  "Pakistan HQ": (
       <>
         {/* River/Canal */}
         <path d="M -20,170 Q 120,150 240,110 T 440,70" fill="none" stroke="#6b2d8b" strokeWidth="16" opacity="0.15" />
@@ -41,15 +37,8 @@ const OFFICES = [
         {/* Diagonal connection */}
         <line x1="0" y1="20" x2="350" y2="230" stroke="rgba(201,168,232,0.1)" strokeWidth="3" />
       </>
-    )
-  },
-  {
-    flag: "🇬🇧",
-    name: "UK Chapter",
-    address: "71-75 Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom",
-    email: "info@digitalesuk.com",
-    searchLabel: "Covent Garden, LDN",
-    mapPaths: (
+  ),
+  "UK Chapter": (
       <>
         {/* River Thames */}
         <path d="M -20,210 C 130,230 250,190 420,220" fill="none" stroke="#6b2d8b" strokeWidth="24" opacity="0.15" />
@@ -62,15 +51,8 @@ const OFFICES = [
         <line x1="0" y1="140" x2="400" y2="130" stroke="rgba(201,168,232,0.15)" strokeWidth="4" />
         <path d="M 0,30 C 140,80 260,70 400,150" fill="none" stroke="rgba(201,168,232,0.2)" strokeWidth="5" />
       </>
-    )
-  },
-  {
-    flag: "🇺🇸",
-    name: "USA Chapter",
-    address: "135 Madison Ave, New York, NY 10016, United States",
-    email: "admin@digitalesusa.org",
-    searchLabel: "Madison Ave, NYC",
-    mapPaths: (
+  ),
+  "USA Chapter": (
       <>
         {/* Water outline */}
         <rect x="350" y="0" width="50" height="250" fill="#3d1450" opacity="0.25" />
@@ -88,9 +70,14 @@ const OFFICES = [
         {/* Broadway (diagonal) */}
         <line x1="0" y1="220" x2="330" y2="0" stroke="rgba(201,168,232,0.3)" strokeWidth="6" />
       </>
-    )
-  }
-];
+  ),
+};
+
+const OFFICES = CONTACT_OFFICES.map((office) => ({ ...office, mapPaths: MAP_PATHS[office.name] }));
+
+function getOffice(name: OfficeName) {
+  return CONTACT_OFFICES.find((office) => office.name === name)!;
+}
 
 function getDisplayHost(searchParams?: { domain?: string | string[] }) {
   const requestHeaders = headers();
@@ -120,18 +107,20 @@ function getOfficesForHost(host: string) {
 }
 
 function getContactDetailsForHost(host: string) {
-  if (host === "digitales.pk" || host === "www.digitales.pk") {
+  const pk = getOffice("Pakistan HQ");
+
+  if (pk.phone && (host === "digitales.pk" || host === "www.digitales.pk")) {
     return {
-      email: "admin@digitales.pk",
+      email: pk.email,
       supportHeading: "Call Us",
-      supportHours: "+92 334 8138456",
-      phoneHref: "+923348138456",
+      supportHours: pk.phone,
+      phoneHref: toTelHref(pk.phone),
     };
   }
 
   if (host.includes("digitalesuk.com")) {
     return {
-      email: "info@digitalesuk.com",
+      email: getOffice("UK Chapter").email,
       supportHeading: "Support",
       supportHours: "Mon–Fri, UK hours",
     };
@@ -139,14 +128,14 @@ function getContactDetailsForHost(host: string) {
 
   if (host.includes("digitalesusa.org")) {
     return {
-      email: "admin@digitalesusa.org",
+      email: getOffice("USA Chapter").email,
       supportHeading: "Support",
       supportHours: "Mon–Fri, US hours",
     };
   }
 
   return {
-    email: "admin@digitales.pk",
+    email: pk.email,
     supportHeading: "Global Support",
     supportHours: "Mon–Fri across PK, UK & USA hours",
   };
