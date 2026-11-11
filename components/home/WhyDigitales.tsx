@@ -1,7 +1,6 @@
 import { PenNib, Sparkle, Brain, Gauge, CursorClick, Graph } from "@phosphor-icons/react/dist/ssr";
 import { DIFFERENTIATORS } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
-import Link from "@/components/ui/RegionalLink";
 
 const ICONS = [PenNib, Sparkle, Brain, Gauge, CursorClick, Graph];
 
@@ -13,14 +12,7 @@ export default function WhyDigitales() {
         <h2 className="mt-3 max-w-2xl h2">A Different Kind of Digital Partner.</h2>
         <p className="mt-5 max-w-2xl lede">
           We do not separate marketing from technology - because your customers
-          do not either. The result is{" "}
-          <Link
-            href="/services/seo"
-            className="text-gold underline decoration-gold/40 underline-offset-4 transition hover:text-white hover:decoration-white/60"
-          >
-            compounding growth
-          </Link>
-          , not isolated wins.
+          do not either. The result is compounding growth, not isolated wins.
         </p>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {DIFFERENTIATORS.map((d, i) => {

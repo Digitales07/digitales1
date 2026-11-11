@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import Link from "@/components/ui/RegionalLink";
 import { ArrowRight, CheckCircle, Sparkle } from "@phosphor-icons/react/dist/ssr";
 import CircuitBackground from "@/components/ui/CircuitBackground";
@@ -49,7 +48,7 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
     title: "SEO",
     headline: "Be Found. Be Chosen. Own the Search Results.",
     answerParagraphs: [
-      "Digitales provides search engine optimisation services for businesses across Pakistan, the UK, and the USA. We build SEO programmes that [earn organic visibility](/services/social-media-marketing), attract high-intent traffic, and deliver compounding returns - through technical audits, content strategy, link building, and local SEO.",
+      "Digitales provides search engine optimisation services for businesses across Pakistan, the UK, and the USA. We build SEO programmes that earn organic visibility, attract high-intent traffic, and deliver compounding returns - through technical audits, content strategy, link building, and local SEO.",
     ],
     quote:
       "Good SEO does not chase the algorithm. It builds the kind of digital authority that algorithms are designed to reward.",
@@ -109,7 +108,7 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
     title: "Digital Media Buying",
     headline: "Maximum Return. Minimum Wasted Spend.",
     answerParagraphs: [
-      "Digitales plans, executes, and optimises high-performance paid media campaigns across search, social, display, and programmatic channels for growth-oriented organisations in Pakistan, the UK, and the USA. We manage Google Ads, Meta, TikTok, LinkedIn, and [programmatic platforms](/services/social-media-marketing) with a rigorous, data-led approach designed to eliminate guesswork. Our philosophy is built on the reality that modern advertising requires more than just launching campaigns - it demands absolute alignment between learning algorithms and deep consumer psychology across diverse international markets.",
+      "Digitales plans, executes, and optimises high-performance paid media campaigns across search, social, display, and programmatic channels for growth-oriented organisations in Pakistan, the UK, and the USA. We manage Google Ads, Meta, TikTok, LinkedIn, and programmatic platforms with a rigorous, data-led approach designed to eliminate guesswork. Our philosophy is built on the reality that modern advertising requires more than just launching campaigns - it demands absolute alignment between learning algorithms and deep consumer psychology across diverse international markets.",
       "By functioning as an extension of your growth team, we deep-dive into cross-border market dynamics to craft tailored bidding strategies that treat your budget as a high-yield investment rather than an operational expense.",
     ],
     quote:
@@ -171,7 +170,7 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
     title: "Social Media Marketing",
     headline: "Build Communities That Convert.",
     answerParagraphs: [
-      "Digitales engineers social-first ecosystems for market-defining brands across Pakistan, the UK, and the USA. We orchestrate cross-platform strategy, culture-driven content creation, and active community cultivation with a single, unyielding metric of success: transforming passive attention into [commercial momentum](/services/digital-media-buying).",
+      "Digitales engineers social-first ecosystems for market-defining brands across Pakistan, the UK, and the USA. We orchestrate cross-platform strategy, culture-driven content creation, and active community cultivation with a single, unyielding metric of success: transforming passive attention into commercial momentum.",
       "We treat social channels as something far greater than mere broadcast tools. In a hyper-connected economy, your social ecosystem is your brand’s primary storefront, its conversational heartbeat, and its ultimate driver of cultural equity. A beautifully curated aesthetic is a wasted investment if it fails to impact your bottom line. We bridge the gap between brilliant narrative craft and absolute analytical accountability, shifting your channels away from superficial noise toward predictable user actions.",
     ],
     servicesTitle: "Our Services",
@@ -210,7 +209,7 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
     title: "Digital PR & Influencer",
     headline: "Shape Perception. Build Authority. Own the Narrative.",
     answerParagraphs: [
-      "[Digitales](/) delivers high-impact digital PR and creator-led marketing strategies for ambitious brands seeking undeniable credibility, cultural relevance, and dominant media coverage. We secure top-tier press placements, orchestrate hyper-targeted influencer movements, protect corporate reputations, and position our clients as the definitive authorities in their fields across Pakistan, the UK, and the USA markets.",
+      "Digitales delivers high-impact digital PR and creator-led marketing strategies for ambitious brands seeking undeniable credibility, cultural relevance, and dominant media coverage. We secure top-tier press placements, orchestrate hyper-targeted influencer movements, protect corporate reputations, and position our clients as the definitive authorities in their fields across Pakistan, the UK, and the USA markets.",
       "Navigating this complex trust landscape requires an international, highly nuanced approach. The media mechanics of securing high-tier thought leadership in London or New York differ vastly from driving mass-market behavioral shifts across Pakistan's rapidly expanding digital mainstream. At Digitales, we possess a deep, cross-border understanding of media psychology and creator economics. We know how to translate a corporate milestone into an unignorable journalistic angle, and we know exactly how to align a brand with digital creators who share genuine alignment with your target demographic.",
     ],
     servicesTitle: "Our Services",
@@ -248,7 +247,7 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
     headline:
       "Your Digital Presence Is Your First Commercial Impression. Make It Count.",
     answerParagraphs: [
-      "Digitales builds custom websites, [mobile applications](/services/enterprise-software), and high-performance web platforms for growth-focused businesses across Pakistan, the UK, and the USA. We leverage cutting-edge technologies like React, Next.js, Laravel, Flutter, and WordPress to deliver lightning-fast, conversion-optimised digital products that directly serve your commercial objectives.",
+      "Digitales builds custom websites, mobile applications, and high-performance web platforms for growth-focused businesses across Pakistan, the UK, and the USA. We leverage cutting-edge technologies like React, Next.js, Laravel, Flutter, and WordPress to deliver lightning-fast, conversion-optimised digital products that directly serve your commercial objectives.",
       "We believe your website or mobile app shouldn’t just exist as an online brochure or a passive digital placeholder. In a global marketplace where attention is short and competition is fierce, your product is your brand's definitive handshake. If your platform suffers from sluggish load times, clunky navigation, or fragmented code, it isn't just underperforming - it is actively turning revenue away.",
       "We bridge the gap between stunning visual aesthetics and rigorous software engineering to build scalable, secure platforms designed for high-impact commercial performance.",
     ],
@@ -300,7 +299,7 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
     headline: "Software That Fits Your Business - Not the Other Way Around.",
     answerParagraphs: [
       "Most enterprise software forces you to change your workflows, adjust your habits, and work around its limitations. We think that’s backwards. Your operations are unique, and your technology should be too. We design, build, and integrate custom enterprise software tailored specifically to your operational realities - allowing you to scale seamlessly, eliminate friction, and unlock your team’s true potential.",
-      "We dive deep into your operational realities, mapping out your unique workflows, bottlenecks, and growth objectives. Whether you need to centralize chaotic data pipelines, liberate your team from repetitive manual tasks, or build an internal platform that connects global offices seamlessly, we engineer tailor-made [digital ecosystems](/services/web-app-development). The result is a robust, cloud-native infrastructure that operates as a natural extension of your business, giving you the agility to innovate, the security to protect your assets, and the scalability to thrive on your own terms.",
+      "We dive deep into your operational realities, mapping out your unique workflows, bottlenecks, and growth objectives. Whether you need to centralize chaotic data pipelines, liberate your team from repetitive manual tasks, or build an internal platform that connects global offices seamlessly, we engineer tailor-made digital ecosystems. The result is a robust, cloud-native infrastructure that operates as a natural extension of your business, giving you the agility to innovate, the security to protect your assets, and the scalability to thrive on your own terms.",
     ],
     blocks: [
       {
@@ -393,36 +392,6 @@ export function createServiceMetadata(slug: ServiceSlug): Metadata {
   };
 }
 
-// Turns "[anchor text](/path)" inside a paragraph string into an internal link.
-const INLINE_LINK = /\[([^\]]+)\]\(([^)]+)\)/g;
-
-function withInlineLinks(text: string) {
-  const parts: ReactNode[] = [];
-  let lastIndex = 0;
-
-  let match: RegExpExecArray | null;
-  INLINE_LINK.lastIndex = 0;
-
-  while ((match = INLINE_LINK.exec(text)) !== null) {
-    const [whole, label, href] = match;
-    const start = match.index;
-    if (start > lastIndex) parts.push(text.slice(lastIndex, start));
-    parts.push(
-      <Link
-        key={start}
-        href={href}
-        className="text-gold underline decoration-gold/40 underline-offset-4 transition hover:text-white hover:decoration-white/60"
-      >
-        {label}
-      </Link>,
-    );
-    lastIndex = start + whole.length;
-  }
-
-  if (lastIndex < text.length) parts.push(text.slice(lastIndex));
-  return parts;
-}
-
 type ContentCard = {
   title: string;
   body?: string;
@@ -498,7 +467,7 @@ export function ServiceTemplate({ slug }: { slug: ServiceSlug }) {
             <div className="mt-8 max-w-3xl space-y-6">
               {content.answerParagraphs.map((paragraph) => (
                 <p key={paragraph} className="font-body text-base leading-[1.75] text-slate-300 sm:text-lg">
-                  {withInlineLinks(paragraph)}
+                  {paragraph}
                 </p>
               ))}
             </div>
