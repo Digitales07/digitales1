@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "@/components/ui/RegionalLink";
 import { ArrowRight, CheckCircle, Sparkle } from "@phosphor-icons/react/dist/ssr";
 import CircuitBackground from "@/components/ui/CircuitBackground";
+import ToolPlatformLogo from "@/components/services/ToolPlatformLogo";
 
 const serviceSlugs = [
   "seo",
@@ -25,10 +26,17 @@ type ToolLogo = {
   accent?: string;
 };
 
+type InlineLink = {
+  phrase: string;
+  href: string;
+  paragraphIndex?: number;
+};
+
 type ServiceContent = {
   title: string;
   headline: string;
   answerParagraphs: string[];
+  answerLink?: InlineLink;
   quote?: string;
   whyTitle?: string;
   whyItems?: string[];
@@ -50,6 +58,7 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
     answerParagraphs: [
       "Digitales provides search engine optimisation services for businesses across Pakistan, the UK, and the USA. We build SEO programmes that earn organic visibility, attract high-intent traffic, and deliver compounding returns - through technical audits, content strategy, link building, and local SEO.",
     ],
+    answerLink: { phrase: "earn organic visibility", href: "/services/social-media-marketing" },
     quote:
       "Good SEO does not chase the algorithm. It builds the kind of digital authority that algorithms are designed to reward.",
     whyTitle: "Why SEO",
@@ -111,6 +120,7 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
       "Digitales plans, executes, and optimises high-performance paid media campaigns across search, social, display, and programmatic channels for growth-oriented organisations in Pakistan, the UK, and the USA. We manage Google Ads, Meta, TikTok, LinkedIn, and programmatic platforms with a rigorous, data-led approach designed to eliminate guesswork. Our philosophy is built on the reality that modern advertising requires more than just launching campaigns - it demands absolute alignment between learning algorithms and deep consumer psychology across diverse international markets.",
       "By functioning as an extension of your growth team, we deep-dive into cross-border market dynamics to craft tailored bidding strategies that treat your budget as a high-yield investment rather than an operational expense.",
     ],
+    answerLink: { phrase: "programmatic platforms", href: "/services/social-media-marketing" },
     quote:
       "The right message, in front of the right person, at the right moment - that is the only standard we accept.",
     servicesTitle: "Our Media Buying Services",
@@ -173,6 +183,7 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
       "Digitales engineers social-first ecosystems for market-defining brands across Pakistan, the UK, and the USA. We orchestrate cross-platform strategy, culture-driven content creation, and active community cultivation with a single, unyielding metric of success: transforming passive attention into commercial momentum.",
       "We treat social channels as something far greater than mere broadcast tools. In a hyper-connected economy, your social ecosystem is your brand’s primary storefront, its conversational heartbeat, and its ultimate driver of cultural equity. A beautifully curated aesthetic is a wasted investment if it fails to impact your bottom line. We bridge the gap between brilliant narrative craft and absolute analytical accountability, shifting your channels away from superficial noise toward predictable user actions.",
     ],
+    answerLink: { phrase: "commercial momentum", href: "/services/digital-media-buying" },
     servicesTitle: "Our Services",
     services: [
       "01 / Channel Architecture & Content Mapping",
@@ -212,6 +223,7 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
       "Digitales delivers high-impact digital PR and creator-led marketing strategies for ambitious brands seeking undeniable credibility, cultural relevance, and dominant media coverage. We secure top-tier press placements, orchestrate hyper-targeted influencer movements, protect corporate reputations, and position our clients as the definitive authorities in their fields across Pakistan, the UK, and the USA markets.",
       "Navigating this complex trust landscape requires an international, highly nuanced approach. The media mechanics of securing high-tier thought leadership in London or New York differ vastly from driving mass-market behavioral shifts across Pakistan's rapidly expanding digital mainstream. At Digitales, we possess a deep, cross-border understanding of media psychology and creator economics. We know how to translate a corporate milestone into an unignorable journalistic angle, and we know exactly how to align a brand with digital creators who share genuine alignment with your target demographic.",
     ],
+    answerLink: { phrase: "Digitales", href: "/" },
     servicesTitle: "Our Services",
     services: [
       "Press Release Strategy, Writing & Distribution",
@@ -251,6 +263,7 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
       "We believe your website or mobile app shouldn’t just exist as an online brochure or a passive digital placeholder. In a global marketplace where attention is short and competition is fierce, your product is your brand's definitive handshake. If your platform suffers from sluggish load times, clunky navigation, or fragmented code, it isn't just underperforming - it is actively turning revenue away.",
       "We bridge the gap between stunning visual aesthetics and rigorous software engineering to build scalable, secure platforms designed for high-impact commercial performance.",
     ],
+    answerLink: { phrase: "mobile applications", href: "/services/enterprise-software" },
     quote:
       "A website is not a brochure. It is a business tool.",
     blocks: [
@@ -301,6 +314,7 @@ const serviceContent: Record<ServiceSlug, ServiceContent> = {
       "Most enterprise software forces you to change your workflows, adjust your habits, and work around its limitations. We think that’s backwards. Your operations are unique, and your technology should be too. We design, build, and integrate custom enterprise software tailored specifically to your operational realities - allowing you to scale seamlessly, eliminate friction, and unlock your team’s true potential.",
       "We dive deep into your operational realities, mapping out your unique workflows, bottlenecks, and growth objectives. Whether you need to centralize chaotic data pipelines, liberate your team from repetitive manual tasks, or build an internal platform that connects global offices seamlessly, we engineer tailor-made digital ecosystems. The result is a robust, cloud-native infrastructure that operates as a natural extension of your business, giving you the agility to innovate, the security to protect your assets, and the scalability to thrive on your own terms.",
     ],
+    answerLink: { phrase: "digital ecosystems", href: "/services/web-app-development", paragraphIndex: 1 },
     blocks: [
       {
         heading: "Why Choose Custom Enterprise Engineering?",
@@ -445,6 +459,29 @@ function ServiceCard({
   );
 }
 
+function renderLinkedAnswer(text: string, link?: InlineLink) {
+  if (!link) return text;
+
+  const index = text.indexOf(link.phrase);
+  if (index === -1) return text;
+
+  const before = text.slice(0, index);
+  const after = text.slice(index + link.phrase.length);
+
+  return (
+    <>
+      {before}
+      <Link
+        href={link.href}
+        className="font-medium text-gold underline decoration-gold/40 underline-offset-4 transition hover:text-white"
+      >
+        {link.phrase}
+      </Link>
+      {after}
+    </>
+  );
+}
+
 export function ServiceTemplate({ slug }: { slug: ServiceSlug }) {
   const content = serviceContent[slug];
   const serviceCards = toContentCards(content.services);
@@ -465,9 +502,14 @@ export function ServiceTemplate({ slug }: { slug: ServiceSlug }) {
               {content.headline}
             </h1>
             <div className="mt-8 max-w-3xl space-y-6">
-              {content.answerParagraphs.map((paragraph) => (
+              {content.answerParagraphs.map((paragraph, paragraphIndex) => (
                 <p key={paragraph} className="font-body text-base leading-[1.75] text-slate-300 sm:text-lg">
-                  {paragraph}
+                  {renderLinkedAnswer(
+                    paragraph,
+                    paragraphIndex === (content.answerLink?.paragraphIndex ?? 0)
+                      ? content.answerLink
+                      : undefined,
+                  )}
                 </p>
               ))}
             </div>
@@ -585,23 +627,7 @@ export function ServiceTemplate({ slug }: { slug: ServiceSlug }) {
                   className="group flex min-h-32 flex-col items-center justify-center gap-4 rounded-card border border-white/[0.08] bg-[#15101E] px-4 py-6 text-center transition duration-300 hover:-translate-y-1 hover:border-gold/30 hover:bg-[#191221]"
                 >
                   <span className="grid h-11 w-full place-items-center" aria-hidden="true">
-                    {tool.icon ? (
-                      <img
-                        src={tool.icon}
-                        alt=""
-                        width="44"
-                        height="44"
-                        loading="lazy"
-                        className="h-11 w-11 object-contain transition duration-300 group-hover:scale-105"
-                      />
-                    ) : (
-                      <span
-                        className="whitespace-nowrap font-display text-lg font-extrabold tracking-[-0.04em]"
-                        style={{ color: tool.accent }}
-                      >
-                        {tool.name}
-                      </span>
-                    )}
+                    <ToolPlatformLogo name={tool.name} src={tool.icon} accent={tool.accent} />
                   </span>
                   <span className="font-body text-sm font-semibold leading-snug text-slate-300 transition group-hover:text-white">
                     {tool.name}
